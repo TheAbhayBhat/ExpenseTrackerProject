@@ -2,9 +2,11 @@ package com.expense.springboot.expenseTracker.Entity;
 
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 import java.sql.Timestamp;
 
@@ -13,7 +15,9 @@ import java.sql.Timestamp;
 @Setter
 @Entity
 @Table(name="AppUser")
-public class appUser {
+@Builder(toBuilder = true)
+@Where(clause="rowstate <> -1")
+public class appUserEntity {
 
   @Id
   @GeneratedValue()
@@ -25,6 +29,9 @@ public class appUser {
 
   @Column(name="lastname")
   private String LastName;
+
+  @Column(name="income")
+  private String income;
 
   @Column(name="loggedDate")
   private Timestamp loggedDate;

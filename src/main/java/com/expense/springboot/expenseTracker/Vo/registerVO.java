@@ -1,5 +1,6 @@
 package com.expense.springboot.expenseTracker.Vo;
 
+
 import lombok.*;
 
 @Data
@@ -8,9 +9,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class loginVO {
+public class registerVO {
 
-      private String userName;
-      private String passWord;
-
+    private String firstName;
+    private String lastName;
+    private String income;
 }

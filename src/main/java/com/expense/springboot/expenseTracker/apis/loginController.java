@@ -1,31 +1,41 @@
 package com.expense.springboot.expenseTracker.apis;
 
-import com.expense.springboot.expenseTracker.service.serviceImpl.LoginServiceImpl;
+import com.expense.springboot.expenseTracker.Vo.registerVO;
+import com.expense.springboot.expenseTracker.service.serviceImpl.LoginAndRegisterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import com.expense.springboot.expenseTracker.Vo.loginVO;
 
 @RequestMapping("/login")
 @RestController
 public class loginController {
     @Autowired
-    LoginServiceImpl loginServiceImpl;
+    LoginAndRegisterServiceImpl loginAndRegisterServiceImpl;
 
-    @PostMapping("/loginSubmit")
-    private void loginSubmit(@RequestBody loginVO loginVo)
+    @GetMapping("/loginSubmit")
+    private ResponseEntity<Object> loginSubmit(@RequestBody loginVO loginVo)
     {
         try{
-            // call login service
-            loginServiceImpl.login(loginVo);
-
+            Boolean isUserExist=loginAndRegisterServiceImpl.login(loginVo);
+            return ResponseEntity.ok(isUserExist);
         }catch(Exception e)
         {
-            System.out.println("exception");
+            System.out.println("exception"+ e);
+            return ResponseEntity.notFound().build();
         }
 
+    }
+
+    @PostMapping("/loginRegister")
+    private ResponseEntity<Object> loginRegister(@RequestBody registerVO registerVo)
+    {
+          try{
+              loginAndRegisterServiceImpl.register(registerVo);
+          }catch(Exception e)
+          {
+
+          }
     }
 
 }
