@@ -2,6 +2,7 @@ package com.expense.springboot.expenseTracker.apis;
 
 import com.expense.springboot.expenseTracker.Vo.registerVO;
 import com.expense.springboot.expenseTracker.service.serviceImpl.LoginAndRegisterServiceImpl;
+import org.slf4j.ILoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,10 +33,12 @@ public class loginController {
     {
           try{
               loginAndRegisterServiceImpl.register(registerVo);
+              return ResponseEntity.ok("Success");
           }catch(Exception e)
           {
-
+              System.out.println("erri");
           }
+        return ResponseEntity.notFound().build();
     }
 
 }
