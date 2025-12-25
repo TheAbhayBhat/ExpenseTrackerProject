@@ -2,41 +2,35 @@ package com.expense.springboot.expenseTracker.Entity;
 
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.Where;
 
-import java.sql.Timestamp;
 
+
+@EqualsAndHashCode(callSuper = false)
 @Data
 @Getter
 @Setter
 @Entity
-@Table(name="AppUser")
+@Table(name="app_users")
 @Builder(toBuilder = true)
-@Where(clause="rowstate <> -1")
-public class appUserEntity {
+@SQLRestriction("rowstate <> -1")
+public class appUserEntity extends  baseEntity{
 
   @Id
   @GeneratedValue()
-  @Column(name="id")
+  @Column(name="user_id")
   private Integer id;
 
-  @Column(name="firstname")
+  @Column(name="first_name")
   private String FirstName;
 
-  @Column(name="lastname")
+  @Column(name="last_name")
   private String LastName;
 
   @Column(name="income")
   private String income;
 
-  @Column(name="loggedDate")
-  private Timestamp loggedDate;
-
-  @Column(name="lastUpdatedDate")
-  private Timestamp lastUpdatedDate;
 
 }
