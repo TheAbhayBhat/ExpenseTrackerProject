@@ -22,7 +22,7 @@ public class loginController {
             return ResponseEntity.ok(isUserExist);
         }catch(Exception e)
         {
-            System.out.println("exception"+ e);
+            System.out.println("exception is this as we are prpinting "+ e);
             return ResponseEntity.notFound().build();
         }
 
