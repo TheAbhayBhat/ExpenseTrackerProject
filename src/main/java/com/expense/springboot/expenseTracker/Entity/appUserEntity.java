@@ -4,7 +4,7 @@ package com.expense.springboot.expenseTracker.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
-import org.hibernate.annotations.Where;
+
 
 
 
